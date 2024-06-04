@@ -1,8 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useStopwatch } from "react-timer-hook";
 import { QrReader } from "@blackbox-vision/react-qr-reader";
 
+function Accueil() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/qr");
+  };
+
+  return (
+    <div>
+      <h1>Bienvenue</h1>
+      <p>
+        Cette application vous permet de suivre une course d'orientation. A
+        chaques étapes, trouver le qr code qui vous donnera une lettre afin de
+        déchiffrer le mot secret. Une fois le mot secret trouvé, le temps
+        s'arrête !
+      </p>
+      <button onClick={handleClick}>J'ai compris</button>
+    </div>
+  );
+}
 function MyStopwatch() {
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
     autoStart: false,
@@ -93,12 +114,13 @@ const QRCodeReader = () => {
 export default function App() {
   return (
     <>
-      <div>
-        <MyStopwatch />
-      </div>
-      <div>
-        <QRCodeReader />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Accueil />} />
+          <Route path="/qr" element={<QRCodeReader />} />
+          <Route path="/chrono" element={<MyStopwatch />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
