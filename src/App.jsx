@@ -53,7 +53,7 @@ function MyStopwatch() {
   }, [isRunning, started, hours, minutes, seconds]);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }} id="test">
       <p>Test timer </p>
 
       <button
