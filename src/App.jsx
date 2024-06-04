@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useStopwatch } from "react-timer-hook";
-import { QrReader } from "@blackbox-vision/react-qr-reader";
 
 function Accueil() {
   const navigate = useNavigate();
@@ -13,12 +12,12 @@ function Accueil() {
 
   return (
     <div>
-      <h1>Bienvenue</h1>
+      <h1>Bienvenue sur Angoul'Oriente.</h1>
       <p>
-        Cette application vous permet de suivre une course d'orientation. A
-        chaques étapes, trouver le qr code qui vous donnera une lettre afin de
-        déchiffrer le mot secret. Une fois le mot secret trouvé, le temps
-        s'arrête !
+        Cette application vous permet de participer une course d'orientation
+        ludique et sportive. A chaques étapes, trouver le Qr Code qui vous
+        donnera une lettre afin de déchiffrer le mot secret. Une fois le mot
+        secret trouvé, le temps s'arrête !
       </p>
       <button onClick={handleClick}>J'ai compris</button>
     </div>
@@ -113,9 +112,15 @@ const QRCodeReader = () => {
 
 function Login() {
   const navigate = useNavigate();
+  const [loginValue, setLoginValue] = useState("");
 
-  const handleLogin = () => {
-    sessionStorage.setItem("username", hours);
+  const handleLogin = (event) => {
+    const login = event.target.value;
+    setLoginValue(login);
+    sessionStorage.setItem("username", login);
+  };
+
+  const redirectToApp = () => {
     navigate("/chrono");
   };
 
@@ -125,12 +130,11 @@ function Login() {
       <p>Vous devez vous connecter pour accéder à la course</p>
       <input
         type="text"
-        value={inputValue}
+        value={loginValue}
         onChange={handleLogin}
-        placeholder="Enter le mot caché pour terminer la course"
-        style={{ display: !started ? "none" : "inline-block" }}
+        placeholder="Entrer votre nom"
       />
-      <button onClick={handleLogin}>Se connecter</button>
+      <button onClick={redirectToApp}>Valider</button>
     </div>
   );
 }
