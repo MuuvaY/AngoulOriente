@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useStopwatch } from "react-timer-hook";
-import { QrReader } from "@blackbox-vision/react-qr-reader";
 import Geoloc from "./components/Geoloc";
+import "leaflet/dist/leaflet.css";
 
 function MyStopwatch() {
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
