@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import "./../style.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -17,7 +17,7 @@ function Geoloc() {
       timestamp: new Date().toISOString(),
     };
     setLocations((prevLocations) => [...prevLocations, newLocation]);
-    // Store the new location in session storage
+    // Stockez la nouvelle localisation dans le stockage de session
     sessionStorage.setItem(
       "locations",
       JSON.stringify([...locations, newLocation])
@@ -33,56 +33,33 @@ function Geoloc() {
         );
       };
 
-      // Fetch the location initially
+      // Récupérez la localisation initialement
       fetchLocation();
-      // Set up an interval to fetch the location every 10 seconds
+      // Configurez un intervalle pour récupérer la localisation toutes les 10 secondes
       const intervalId = setInterval(fetchLocation, 10000);
 
       return () => {
         clearInterval(intervalId);
       };
     } else {
-      setError("Geolocation API not supported.");
+      setError("API de géolocalisation non supportée.");
     }
   }, []);
 
-  //MapBox
-
-  const TOKEN = process.env.REACT_APP_TOKEN;
-
-  const [viewPort, setViewPort] = useState({
-    latitude: 45.650002,
-    longitude: 0.15,
-    zoom: 6,
-  });
+  const mapTilerApiKey = import.meta.env.MAP_TILER_API;
 
   return (
     <>
       <h1>test</h1>
-      <MapContainer
-        center={[45.650002, 0.15]}
-        zoom={15}
-        scrollWheelZoom={false}
-      >
+      <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a>'
+          url={`https://api.maptiler.com/maps/streets-v2/256/tiles.json?key=3M20Tu4JoCibtEUQUL1X`}
         />
         <Marker position={position}>
           <Popup>Je suis elio </Popup>
         </Marker>
       </MapContainer>
-
-      <div style={{ width: "100vw", height: "100vh" }}>
-        <ReactMapG1
-          {...viewPort}
-          mapBoxApiAccesToken={TOKEN}
-          width="100%"
-          height="100%"
-          transitionDuration="200"
-          map="mapbox://styles/mapbox/standard"
-        ></ReactMapG1>
-      </div>
 
       <div>
         <div id="target">
