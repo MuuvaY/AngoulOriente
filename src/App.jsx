@@ -8,7 +8,7 @@ function Accueil() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/qr");
+    navigate("/login");
   };
 
   return (
@@ -111,13 +111,38 @@ const QRCodeReader = () => {
   );
 };
 
+function Login() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    sessionStorage.setItem("username", hours);
+    navigate("/chrono");
+  };
+
+  return (
+    <div>
+      <h1>Connexion</h1>
+      <p>Vous devez vous connecter pour accéder à la course</p>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleLogin}
+        placeholder="Enter le mot caché pour terminer la course"
+        style={{ display: !started ? "none" : "inline-block" }}
+      />
+      <button onClick={handleLogin}>Se connecter</button>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Accueil />} />
-          <Route path="/qr" element={<QRCodeReader />} />
+          <Route path="/login" element={<Login />} />
+
           <Route path="/chrono" element={<MyStopwatch />} />
         </Routes>
       </BrowserRouter>
