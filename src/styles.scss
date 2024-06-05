@@ -1,3 +1,7 @@
-@import "vendors/reset.scss";
-@import "vendors/test.scss";
-@import "vendors/colors.scss";
+@import "scss/vendors/reset.scss";
+@import "scss/global/colors.scss";
+@import "scss/global/layout.scss";
+@import "scss/global/button.scss";
+@import "scss/fonts/fonts.scss";
+
+@import "scss/blocs/accueil.scss";
