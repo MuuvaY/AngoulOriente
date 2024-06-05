@@ -17,14 +17,14 @@ function Login() {
   };
 
   return (
-    <div>
+    <div id="login">
       <img
         src={logo}
         alt="logo de l'application Angoul'Oriente"
         className="login-logo"
       />
-      <h1>Inscription</h1>
-      <div id="barre-red"></div>
+      <h1 id="login-title">Inscription</h1>
+      <div id="login-barre-red"></div>
 
       <input
         type="text"
