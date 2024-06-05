@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@blackbox-vision/react-qr-reader": "^5.0.0",
+    "firebase": "^10.12.2",
     "qr-scanner": "^1.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.14",
+    "react-router-dom": "^6.23.1",
     "react-timer-hook": "^3.0.7",
     "sass": "^1.77.4"
   },
