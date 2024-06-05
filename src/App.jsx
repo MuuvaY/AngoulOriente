@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useStopwatch } from "react-timer-hook";
-import { QrReader } from "@blackbox-vision/react-qr-reader";
 
 function MyStopwatch() {
   const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
