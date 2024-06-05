@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Accueil from "./components/Accueil";
 import MyStopwatch from "./components/Timer";
 import Login from "./components/Login";
+import Geoloc from "./components/Geoloc";
 
 export default function App() {
   return (
