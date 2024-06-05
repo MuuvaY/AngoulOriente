@@ -54,7 +54,7 @@ function Geoloc() {
       <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a>'
-          url={`https://api.maptiler.com/maps/streets-v2/256/tiles.json?key=3M20Tu4JoCibtEUQUL1X`}
+          url={`https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=3M20Tu4JoCibtEUQUL1X`}
         />
         <Marker position={position}>
           <Popup>Je suis elio </Popup>
