@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useStopwatch } from "react-timer-hook";
 
 function MyStopwatch() {
@@ -8,6 +9,8 @@ function MyStopwatch() {
 
   const [inputValue, setInputValue] = useState("");
   const [started, setStarted] = useState(false);
+
+  const navigate = useNavigate();  // Déplacez useNavigate ici
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -27,12 +30,13 @@ function MyStopwatch() {
       sessionStorage.setItem("hours", hours);
       sessionStorage.setItem("minutes", minutes);
       sessionStorage.setItem("seconds", seconds);
+      navigate("/recap");
     }
-  }, [isRunning, started, hours, minutes, seconds]);
+  }, [isRunning, started, hours, minutes, seconds, navigate]);
 
   return (
     <div style={{ textAlign: "center" }} id="test">
-      <p>Test timer </p>
+      <p>Test timer</p>
 
       <button
         onClick={handleStart}
@@ -45,7 +49,7 @@ function MyStopwatch() {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="Enter le mot caché pour terminer la course"
+          placeholder="Entrez le mot caché pour terminer la course"
           style={{ display: !started ? "none" : "inline-block" }}
         />
       </div>
