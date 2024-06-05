@@ -99,12 +99,16 @@ function Geoloc() {
       center: [0.15, 45.650002], // starting position [lng, lat]
       zoom: 14, // starting zoom
     });
+
+    const marker = new maptilersdk.Marker()
+      .setLngLat([0.15, 45.650002])
+      .addTo(map);
   }, []);
 
   return (
     <>
       <h1>test</h1>
-      <div id="map" style={{ height: "400px", width: "100%" }}></div>
+      <div id="map"></div>
     </>
   );
 }

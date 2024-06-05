@@ -100,7 +100,7 @@ export default function App() {
       <div>
         <QRCodeReader />
       </div>
-      <div>
+      <div className="geoloc">
         <Geoloc />
       </div>
     </>

@@ -1,0 +1,21 @@
+{
+  "name": "Angoul'Oriente",
+  "short_name": "ALO",
+  "description": "Cette application vous permet de participer une course d'orientation ludique et sportive. A chaques étapes, trouver le Qr Code qui vous donnera une lettre afin de déchiffrer le mot secret. Une fois le mot secret trouvé, le temps s'arrête !",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/src/assets/logo-angouloriente.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/src/assets/logo-angouloriente.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
