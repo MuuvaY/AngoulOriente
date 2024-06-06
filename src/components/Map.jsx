@@ -9,10 +9,12 @@ import {
   faSmog,
 } from "@fortawesome/free-solid-svg-icons";
 import { useStopwatchContext } from "./StopwatchContext";
+import { useNavigate } from "react-router-dom";
+
 const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
-  const { seconds, minutes, hours } = useStopwatchContext(); // Récupérer les valeurs du timer
+  const { seconds, minutes, hours } = useStopwatchContext();
 
   useEffect(() => {
     fetchWeather();
@@ -31,6 +33,10 @@ const Weather = () => {
     } catch (error) {
       setError(error);
     }
+  };
+
+  const handleTestButtonClick = () => {
+    navigate("/GetTimer");
   };
 
   const getWeatherIcon = (description) => {
@@ -56,22 +62,25 @@ const Weather = () => {
   };
 
   return (
-    <div id="weather">
-      <div id="weather-container">
-        {weather ? (
-          <div id="weather-data">
-            <p>{Math.round(weather.main.temp - 273.15)}°C</p>
-            <FontAwesomeIcon
-              icon={getWeatherIcon(weather.weather[0].description)}
-              size="2x"
-            />
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-        {error && <p>Error: {error.message}</p>}
+    <>
+      <div id="weather">
+        <div id="weather-container">
+          {weather ? (
+            <div id="weather-data">
+              <p>{Math.round(weather.main.temp - 273.15)}°C</p>
+              <FontAwesomeIcon
+                icon={getWeatherIcon(weather.weather[0].description)}
+                size="2x"
+              />
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+          {error && <p>Error: {error.message}</p>}
+        </div>
       </div>
-    </div>
+      <button onClick={handleTestButtonClick}>Go to Test</button>
+    </>
   );
 };
 

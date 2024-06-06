@@ -5,6 +5,8 @@ import Start from "./components/Start";
 import Login from "./components/Login";
 import Recap from "./components/Recap";
 import Map from "./components/Map";
+import GetTimer from "./components/GetTimer";
+
 import { StopwatchProvider } from "./components/StopwatchContext";
 
 export default function App() {
@@ -19,6 +21,7 @@ export default function App() {
             <Route path="/start" element={<Start />} />
             <Route path="/recap" element={<Recap />} />
             <Route path="/map" element={<Map />} />
+            <Route path="/test" element={<GetTimer />} />
           </Routes>
         </BrowserRouter>
       </StopwatchProvider>
