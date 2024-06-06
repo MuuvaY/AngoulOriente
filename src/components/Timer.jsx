@@ -1,60 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useStopwatch } from "react-timer-hook";
+import { useStopwatchContext } from "./StopwatchContext";
 
-function MyStopwatch() {
-  const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
-    autoStart: false,
-  });
-
-  const [inputValue, setInputValue] = useState("");
-  const [started, setStarted] = useState(false);
-
-  const navigate = useNavigate();  // Déplacez useNavigate ici
-
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
-    if (value.toLowerCase() === "secret") {
-      pause();
-    }
-  };
-
-  const handleStart = () => {
-    start();
-    setStarted(true);
-  };
+const Timer = () => {
+  const { seconds, minutes, hours } = useStopwatchContext();
 
   useEffect(() => {
-    if (!isRunning && started) {
-      sessionStorage.setItem("hours", hours);
-      sessionStorage.setItem("minutes", minutes);
+    const storeTime = () => {
       sessionStorage.setItem("seconds", seconds);
-      navigate("/recap");
-    }
-  }, [isRunning, started, hours, minutes, seconds, navigate]);
+      sessionStorage.setItem("minutes", minutes);
+      sessionStorage.setItem("hours", hours);
+    };
 
-  return (
-    <div style={{ textAlign: "center" }} id="test">
-      <p>Test timer</p>
+    storeTime(); // Store initial time
 
-      <button
-        onClick={handleStart}
-        style={{ display: started ? "none" : "inline-block" }}
-      >
-        Commencer la course
-      </button>
-      <div>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Entrez le mot caché pour terminer la course"
-          style={{ display: !started ? "none" : "inline-block" }}
-        />
-      </div>
-    </div>
-  );
-}
+    // Clean-up function to be executed when the component unmounts
+    return () => {
+      storeTime(); // Store time again when unmounting
+    };
+  }, [seconds, minutes, hours]);
+};
 
-export default MyStopwatch;
+export default Timer;

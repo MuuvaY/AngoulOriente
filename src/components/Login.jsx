@@ -13,7 +13,7 @@ function Login() {
   };
 
   const redirectToApp = () => {
-    navigate("/chrono");
+    navigate("/start");
   };
 
   return (
