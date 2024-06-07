@@ -15,6 +15,7 @@ const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
   const { seconds, minutes, hours } = useStopwatchContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWeather();
@@ -36,7 +37,7 @@ const Weather = () => {
   };
 
   const handleTestButtonClick = () => {
-    navigate("/GetTimer");
+    navigate("/test");
   };
 
   const getWeatherIcon = (description) => {
