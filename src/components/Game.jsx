@@ -72,6 +72,7 @@ function Game() {
       <Weather />
       <div id="map" style={{ height: "80vh" }}></div>
       <input
+        id="game-input"
         type="text"
         value={inputValue}
         onChange={handleInputChange}

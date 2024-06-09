@@ -24,7 +24,27 @@
   transform: translateX(-100%) translateY(-50%);
 }
 
-/* Media Queries for mobile screens */
+#game-input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box; /* Garantit que la taille de la boîte comprend les bordures et le padding */
+  border: 1px solid black; /* Bordure grise */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 16px; /* Taille de la police */
+}
+
+#game-input:focus {
+  outline: none;
+}
+
+#game-input::placeholder {
+  color: #ccc;
+}
+#game-input:hover {
+  border-color: #aaa;
+}
+
 @media (max-width: 426px) {
   .qr-reader {
     width: 100%;
