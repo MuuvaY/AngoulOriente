@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@maptiler/sdk": "^2.0.3",
+    "@yudiel/react-qr-scanner": "^2.0.2",
     "dotenv": "^16.4.5",
     "leaflet": "^1.9.4",
     "leaflet-vector-tile-layer": "^0.16.1",
