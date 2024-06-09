@@ -1,17 +1,17 @@
-import React, { useEffect, useState, render } from "react";
+import React, { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-//import "./../style.css";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import logo from "./../assets/logo-angouloriente.webp";
 import * as maptilersdk from "@maptiler/sdk";
 import { useNavigate } from "react-router-dom";
 import Timer from "./Timer";
 import Weather from "./Weather";
 import ReactDOM from "react-dom";
-import { Scanner } from "@yudiel/react-qr-scanner";
+//import { Scanner } from "@yudiel/react-qr-scanner";
+import QrReader from "./QrReader";
 
 function Game() {
-  const [activePopup, setActivePopup] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     maptilersdk.config.apiKey = "y1dslXIqqQPSOGJWsaQy";
@@ -22,22 +22,10 @@ function Game() {
       zoom: 14,
     });
 
-    const passwords = ["secret1", "secret2"]; // Add more passwords as needed
-
-    const handleScan = (result, index) => {
-      console.log(result);
-      if (result === passwords[index]) {
-        alert("QR Code correct! You have entered the right word.");
-        setActivePopup(null); // Close the current popup
-      } else {
-        alert("QR Code incorrect! Try again.");
-      }
-    };
-
     const popupContent = (index) => `
-      <div id="popup-${index}">
-        <h3>Popup ${index + 1}</h3>
-        <p>Scan the QR code to proceed:</p>
+      <div class="popup ${index}">
+        <h3>Balise ${index + 1}</h3>
+        <p>Scan le Qr que tu as trouvé sur place:</p>
         <div id="scanner-${index}"></div>
       </div>`;
 
@@ -65,21 +53,30 @@ function Game() {
       popup.on("open", () => {
         const scannerContainer = document.querySelector(`#scanner-${index}`);
         if (scannerContainer) {
-          ReactDOM.render(
-            <Scanner onScan={(result) => handleScan(result, index)} />,
-            scannerContainer
-          );
+          ReactDOM.render(<QrReader />, scannerContainer);
         }
       });
     });
   }, []);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+    if (e.target.value.toLowerCase() === "newyork") {
+      navigate("/Recap");
+    }
+  };
 
   return (
     <>
       <Timer />
       <Weather />
       <div id="map" style={{ height: "80vh" }}></div>
-      <input type="text" />
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Entrez ici les lettres trouvées à chauqe qr code"
+      />
     </>
   );
 }

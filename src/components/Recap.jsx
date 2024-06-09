@@ -17,7 +17,7 @@ const Recap = () => {
         <p>Vous avez terminé la course d'orientation.</p>
         <p>
           Vous avez trouvé le mot secret :{" "}
-          <strong id="secret-word">secret</strong>
+          <strong id="secret-word">New York</strong>
         </p>
         <p>
           Temps total :{" "}

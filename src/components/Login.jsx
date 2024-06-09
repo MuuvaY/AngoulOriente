@@ -31,6 +31,7 @@ function Login() {
         value={loginValue}
         onChange={handleLogin}
         placeholder="Entrer votre nom..."
+        required
       />
       <button onClick={redirectToApp}>Valider</button>
     </div>
