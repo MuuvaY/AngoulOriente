@@ -8,47 +8,78 @@ import { useNavigate } from "react-router-dom";
 import Timer from "./Timer";
 import Weather from "./Weather";
 
-function Geoloc() {
+function Game() {
+  const [activePopup, setActivePopup] = useState(null);
+
   useEffect(() => {
     maptilersdk.config.apiKey = "y1dslXIqqQPSOGJWsaQy";
     const map = new maptilersdk.Map({
-      container: "map", // container's id or the HTML element to render the map
+      container: "map",
       style: maptilersdk.MapStyle.STREETS,
-      center: [0.15, 45.650002], // starting position [lng, lat]
-      zoom: 14, // starting zoom
+      center: [0.15, 45.650002],
+      zoom: 14,
     });
 
-    // Create a popup
-    // const popup = new maptilersdk.Popup({ offset: 25 }).setText(
-    //   <img src={logo} alt="logo" />
-    // );
-    // Create a popup with an image
-    const popup = new maptilersdk.Popup({ offset: 25 }).setHTML(
-      `<div>
-        <h3>Popup Title</h3>
-        <img src="${logo}" alt="Example image" style="width: 80%; height: auto;"/>
-        <p>This is a popup with an image!</p>
-      </div>`
-    );
+    const passwords = ["secret1", "secret2"]; // Add more passwords as needed
 
-    // Set marker options and add popup
-    const marker = new maptilersdk.Marker({
-      color: "#FFFFFF",
-      draggable: true,
-    })
-      .setLngLat([0.15, 45.650002])
-      .setPopup(popup) // Attach the popup to the marker
-      .addTo(map);
+    const handleScan = (result, index) => {
+      console.log(result);
+      if (result === passwords[index]) {
+        alert("QR Code correct! You have entered the right word.");
+        setActivePopup(null); // Close the current popup
+      } else {
+        alert("QR Code incorrect! Try again.");
+      }
+    };
+
+    const popupContent = (index) => `
+      <div id="popup-${index}">
+        <h3>Popup ${index + 1}</h3>
+        <p>Scan the QR code to proceed:</p>
+        <div id="scanner-${index}"></div>
+      </div>`;
+
+    const popups = [
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(0)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(1)),
+      // Add more popups as needed
+    ];
+
+    const markers = [
+      new maptilersdk.Marker({ color: "#FFFFFF", draggable: true })
+        .setLngLat([0.15, 45.650002])
+        .setPopup(popups[0])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: true })
+        .setLngLat([0.15, 45.660002])
+        .setPopup(popups[1])
+        .addTo(map),
+
+      // Add more markers as needed
+    ];
+
+    popups.forEach((popup, index) => {
+      popup.on("open", () => {
+        const scannerContainer = document.querySelector(`#scanner-${index}`);
+        if (scannerContainer) {
+          ReactDOM.render(
+            <Scanner onScan={(result) => handleScan(result, index)} />,
+            scannerContainer
+          );
+        }
+      });
+    });
   }, []);
 
   return (
     <>
       <Timer />
       <Weather />
-      <div id="map"></div>
+      <div id="map" style={{ height: "80vh" }}></div>
       <input type="text" />
     </>
   );
 }
 
-export default Geoloc;
+export default Game;
