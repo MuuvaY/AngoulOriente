@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 // import "./../style.css";
 
 import "@maptiler/sdk/dist/maptiler-sdk.css";
@@ -42,7 +42,7 @@ function Geoloctest() {
   return (
     <>
       <h1>test</h1>
-      <div id="map"></div>
+      <div id="map" style={{ height: "80vh" }}></div>
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
         doloremque? Repellat excepturi nobis earum placeat! Voluptas consequatur
