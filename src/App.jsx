@@ -4,7 +4,7 @@ import Accueil from "./components/Accueil";
 import Start from "./components/Start";
 import Login from "./components/Login";
 import Recap from "./components/Recap";
-import Map from "./components/Game";
+import Game from "./components/Game";
 import GetTimer from "./components/GetTimer";
 import QrScanner from "./components/QrScanner";
 
@@ -21,7 +21,7 @@ export default function App() {
 
             <Route path="/start" element={<Start />} />
             <Route path="/recap" element={<Recap />} />
-            <Route path="/Game" element={<Map />} />
+            <Route path="/Game" element={<Game />} />
             <Route path="/GetTimer" element={<GetTimer />} />
 
             <Route path="/QrScanner" element={<QrScanner />} />

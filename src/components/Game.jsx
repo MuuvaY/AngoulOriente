@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, render } from "react";
 import "leaflet/dist/leaflet.css";
-import "./../style.css";
+//import "./../style.css";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import logo from "./../assets/logo-angouloriente.webp";
 import * as maptilersdk from "@maptiler/sdk";

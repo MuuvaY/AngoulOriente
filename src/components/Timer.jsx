@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { useStopwatchContext } from "./StopwatchContext";
 
 const Timer = () => {
