@@ -76,9 +76,8 @@ const Game = () => {
           {error && <p>Error: {error.message}</p>}
         </div>
       </div>
-      <div>
-        <QrScanner />
-      </div>
+      <div>/* Add the QrScanner component here */</div>
+      <input type="text" />
     </>
   );
 };
