@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Recap from "./components/Recap";
 import Map from "./components/Map";
 import GetTimer from "./components/GetTimer";
+import QrScanner from "./components/QrScanner";
 
 import { StopwatchProvider } from "./components/StopwatchContext";
 
@@ -21,7 +22,8 @@ export default function App() {
             <Route path="/start" element={<Start />} />
             <Route path="/recap" element={<Recap />} />
             <Route path="/map" element={<Map />} />
-            <Route path="/test" element={<GetTimer />} />
+            <Route path="/GetTimer" element={<GetTimer />} />
+            <Route path="/QrScanner" element={<QrScanner />} />
           </Routes>
         </BrowserRouter>
       </StopwatchProvider>

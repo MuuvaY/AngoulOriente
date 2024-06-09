@@ -1,0 +1,33 @@
+#scanner-container {
+  width: 50vw;
+  height: 50vw;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 10vh;
+  border: 1px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#scanner-button {
+  position: relative;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 0.3s ease; /* Ajout de la transition */
+}
+
+#scanner-button:hover {
+  background-color: $yellow; /* Changement de couleur au survol */
+}
