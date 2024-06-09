@@ -24,7 +24,7 @@ const QrScanner = () => {
         </div>
       )}
       <div id="scanner-button" onClick={handleQrScanner}>
-        <FontAwesomeIcon icon={faQrcode} size="2x" />
+        <FontAwesomeIcon icon={faQrcode} size="3x" />
       </div>
     </>
   );

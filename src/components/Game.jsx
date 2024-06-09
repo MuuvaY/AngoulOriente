@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import QrScanner from "./QrScanner";
+import { Scanner } from "@yudiel/react-qr-scanner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSun,
@@ -9,13 +11,11 @@ import {
   faSmog,
 } from "@fortawesome/free-solid-svg-icons";
 import { useStopwatchContext } from "./StopwatchContext";
-import { useNavigate } from "react-router-dom";
 
-const Weather = () => {
+const Game = () => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
   const { seconds, minutes, hours } = useStopwatchContext();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWeather();
@@ -34,10 +34,6 @@ const Weather = () => {
     } catch (error) {
       setError(error);
     }
-  };
-
-  const handleTestButtonClick = () => {
-    navigate("/test");
   };
 
   const getWeatherIcon = (description) => {
@@ -80,9 +76,11 @@ const Weather = () => {
           {error && <p>Error: {error.message}</p>}
         </div>
       </div>
-      <button onClick={handleTestButtonClick}>Go to Test</button>
+      <div>
+        <QrScanner />
+      </div>
     </>
   );
 };
 
-export default Weather;
+export default Game;
