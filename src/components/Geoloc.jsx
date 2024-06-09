@@ -84,9 +84,8 @@
 import React, { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import "./../style.css";
-
-import mongodb from "./../assets/mongodb.webp";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
+import logo from "./../assets/logo-angouloriente.webp";
 
 import * as maptilersdk from "@maptiler/sdk";
 
@@ -100,8 +99,26 @@ function Geoloc() {
       zoom: 14, // starting zoom
     });
 
-    const marker = new maptilersdk.Marker()
+    // Create a popup
+    // const popup = new maptilersdk.Popup({ offset: 25 }).setText(
+    //   <img src={logo} alt="logo" />
+    // );
+    // Create a popup with an image
+    const popup = new maptilersdk.Popup({ offset: 25 }).setHTML(
+      `<div>
+        <h3>Popup Title</h3>
+        <img src="${logo}" alt="Example image" style="width: 80%; height: auto;"/>
+        <p>This is a popup with an image!</p>
+      </div>`
+    );
+
+    // Set marker options and add popup
+    const marker = new maptilersdk.Marker({
+      color: "#FFFFFF",
+      draggable: true,
+    })
       .setLngLat([0.15, 45.650002])
+      .setPopup(popup) // Attach the popup to the marker
       .addTo(map);
   }, []);
 
@@ -132,51 +149,6 @@ function Geoloc() {
         quis hic mollitia. Officiis, inventore! Atque, consectetur. Perferendis
         molestias maxime suscipit. Tenetur aliquid hic saepe, esse dolor
         adipisci quas? Corporis, quod sunt, fugiat, voluptatem expedita ab odit
-        illo fuga libero temporibus pariatur facere velit. Officiis, vitae. Est
-        vero aspernatur facere minima? Accusamus praesentium ipsum aut saepe
-        eveniet, ducimus quisquam voluptate inventore suscipit officia tempora
-        libero dolore natus sunt. Illo magni accusamus quidem incidunt impedit
-        accusantium eos similique architecto, excepturi voluptates sed. Quae id
-        saepe libero, inventore ex, eveniet nam corporis voluptatum ipsa
-        possimus hic eaque sed consectetur neque dolores fugit molestiae a.
-        Sapiente dolores aliquam quidem fugiat esse, earum perferendis nulla?
-        Laborum aspernatur, doloribus excepturi blanditiis, cum nihil incidunt
-        unde recusandae eveniet laudantium, dolore fugiat? Deserunt autem quia,
-        quas explicabo in provident est sint minima excepturi tempora, possimus,
-        voluptatem magnam ullam. Modi enim, minus facilis vitae unde iure
-        eveniet itaque? Corporis, repellendus consequatur fugit alias sit sed
-        eius quisquam aliquam molestias dolores earum omnis repudiandae magni
-        beatae vero distinctio veritatis neque! Fugit dolorem ipsum veritatis
-        ipsam voluptatibus vel corrupti! Harum, quisquam illum pariatur odio ab
-        beatae dolorum earum dolorem, omnis laborum odit, assumenda possimus
-        tenetur velit totam nemo hic necessitatibus culpa. Ipsam eligendi,
-        commodi a quidem qui veniam quas amet illo ipsa animi voluptas adipisci
-        voluptates numquam ex libero enim deserunt laboriosam autem consectetur
-        harum minus dicta nesciunt quia. Magni, repellendus? Cum rerum
-        aspernatur molestiae sed. Doloremque cum rerum, consectetur facere,
-        laboriosam iusto eligendi expedita quasi non sed nulla eveniet tenetur
-        natus hic deserunt? Laudantium repellendus culpa impedit obcaecati
-        laborum voluptatem. Voluptatem modi impedit corporis quia ratione
-        placeat ex doloremque omnis, delectus aliquid nesciunt unde ipsam sint
-        enim aliquam pariatur nisi, ducimus repellat cumque quaerat maxime
-        voluptatibus eveniet, officiis accusantium? Necessitatibus? Animi
-        tenetur iste ducimus dolores, asperiores eos eveniet sequi voluptates
-        non ex similique voluptatum earum ipsa placeat architecto veritatis sit
-        nulla quaerat debitis ipsam eius unde soluta quod? Molestiae, ipsam.
-        Possimus odit laboriosam tempora adipisci corrupti excepturi distinctio,
-        magni ea, et, assumenda quod. Quibusdam, totam beatae aliquam facere
-        sapiente, nesciunt ab doloremque quisquam obcaecati velit, architecto
-        sed doloribus ipsam numquam. Veniam quam ipsam exercitationem aperiam
-        delectus molestias quod dolore animi repellat pariatur quae perferendis,
-        temporibus nostrum at quos suscipit inventore, sapiente minima nobis
-        illum atque? Iste error ipsum reiciendis! Placeat? Dolore molestiae
-        earum corrupti esse voluptate provident rerum magni id aperiam nisi vero
-        odit dignissimos eaque reiciendis saepe, enim, dolor nemo corporis
-        blanditiis repellat eius doloremque. Voluptatibus facere beatae
-        veritatis. Odio accusantium eligendi maxime ipsa. Est fugit voluptatibus
-        cum! Veniam quam obcaecati aut, debitis praesentium corporis animi
-        dolores placeat enim fugiat hic quidem omnis, dolorem recusandae libero
-        error distinctio asperiores!
       </div>
     </>
   );

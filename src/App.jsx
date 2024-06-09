@@ -14,6 +14,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/chrono" element={<MyStopwatch />} />
+          <Route path="/geoloc" element={<Geoloc />} />
         </Routes>
       </BrowserRouter>
 
