@@ -26,7 +26,18 @@ function Geoloctest() {
       `<div>
         <h3>Popup Title</h3>
         <p>This is a popup with an image!</p>
+        <input type="text" name="text">
+        <button type="submit">Envoyer</button>
       </div>`
+    );
+
+    const popup2 = new maptilersdk.Popup({ offset: 25 }).setHTML(
+      `<div>
+          <h3>Popup Titre</h3>
+          <p>This is a popup with an image!</p>
+          <input type="text" name="text">
+          <button type="submit">Envoyer</button>
+        </div>`
     );
 
     // Set marker options and add popup
@@ -36,6 +47,14 @@ function Geoloctest() {
     })
       .setLngLat([0.15, 45.650002])
       .setPopup(popup) // Attach the popup to the marker
+      .addTo(map);
+
+    const marker2 = new maptilersdk.Marker({
+      color: "#00000",
+      draggable: true,
+    })
+      .setLngLat([0.15, 45.660002])
+      .setPopup(popup2) // Attach the popup to the marker
       .addTo(map);
   }, []);
 
