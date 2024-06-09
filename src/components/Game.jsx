@@ -7,6 +7,8 @@ import * as maptilersdk from "@maptiler/sdk";
 import { useNavigate } from "react-router-dom";
 import Timer from "./Timer";
 import Weather from "./Weather";
+import ReactDOM from "react-dom";
+import { Scanner } from "@yudiel/react-qr-scanner";
 
 function Game() {
   const [activePopup, setActivePopup] = useState(null);
