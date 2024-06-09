@@ -1,85 +1,54 @@
-import React, { useState, useEffect } from "react";
-import QrScanner from "./QrScanner";
-import { Scanner } from "@yudiel/react-qr-scanner";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSun,
-  faCloud,
-  faCloudRain,
-  faBolt,
-  faSnowflake,
-  faSmog,
-} from "@fortawesome/free-solid-svg-icons";
-import { useStopwatchContext } from "./StopwatchContext";
+import React, { useEffect } from "react";
+import "leaflet/dist/leaflet.css";
+import "./../style.css";
+import "@maptiler/sdk/dist/maptiler-sdk.css";
+import logo from "./../assets/logo-angouloriente.webp";
+import * as maptilersdk from "@maptiler/sdk";
+import { useNavigate } from "react-router-dom";
+import Timer from "./Timer";
+import Weather from "./Weather";
 
-const Game = () => {
-  const [weather, setWeather] = useState(null);
-  const [error, setError] = useState(null);
-  const { seconds, minutes, hours } = useStopwatchContext();
-
+function Geoloc() {
   useEffect(() => {
-    fetchWeather();
-    sessionStorage.setItem("hours", hours);
-    sessionStorage.setItem("minutes", minutes);
-    sessionStorage.setItem("seconds", seconds);
-  }, [hours, minutes, seconds]);
+    maptilersdk.config.apiKey = "y1dslXIqqQPSOGJWsaQy";
+    const map = new maptilersdk.Map({
+      container: "map", // container's id or the HTML element to render the map
+      style: maptilersdk.MapStyle.STREETS,
+      center: [0.15, 45.650002], // starting position [lng, lat]
+      zoom: 14, // starting zoom
+    });
 
-  const fetchWeather = async () => {
-    try {
-      const response = await fetch(
-        "http://api.openweathermap.org/data/2.5/weather?q=Angoulême&appid=46f798d8f0bd7deed9d3354d72777914"
-      );
-      const data = await response.json();
-      setWeather(data);
-    } catch (error) {
-      setError(error);
-    }
-  };
+    // Create a popup
+    // const popup = new maptilersdk.Popup({ offset: 25 }).setText(
+    //   <img src={logo} alt="logo" />
+    // );
+    // Create a popup with an image
+    const popup = new maptilersdk.Popup({ offset: 25 }).setHTML(
+      `<div>
+        <h3>Popup Title</h3>
+        <img src="${logo}" alt="Example image" style="width: 80%; height: auto;"/>
+        <p>This is a popup with an image!</p>
+      </div>`
+    );
 
-  const getWeatherIcon = (description) => {
-    switch (description) {
-      case "clear sky":
-        return faSun;
-      case "few clouds":
-      case "scattered clouds":
-      case "broken clouds":
-        return faCloud;
-      case "shower rain":
-      case "rain":
-        return faCloudRain;
-      case "thunderstorm":
-        return faBolt;
-      case "snow":
-        return faSnowflake;
-      case "mist":
-        return faSmog;
-      default:
-        return faCloud;
-    }
-  };
+    // Set marker options and add popup
+    const marker = new maptilersdk.Marker({
+      color: "#FFFFFF",
+      draggable: true,
+    })
+      .setLngLat([0.15, 45.650002])
+      .setPopup(popup) // Attach the popup to the marker
+      .addTo(map);
+  }, []);
 
   return (
     <>
-      <div id="weather">
-        <div id="weather-container">
-          {weather ? (
-            <div id="weather-data">
-              <p>{Math.round(weather.main.temp - 273.15)}°C</p>
-              <FontAwesomeIcon
-                icon={getWeatherIcon(weather.weather[0].description)}
-                size="2x"
-              />
-            </div>
-          ) : (
-            <p>Loading...</p>
-          )}
-          {error && <p>Error: {error.message}</p>}
-        </div>
-      </div>
-      <div>/* Add the QrScanner component here */</div>
+      <Timer />
+      <Weather />
+      <div id="map"></div>
       <input type="text" />
     </>
   );
-};
+}
 
-export default Game;
+export default Geoloc;
