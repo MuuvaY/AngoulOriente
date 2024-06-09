@@ -1,56 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useStopwatch } from "react-timer-hook";
+import React, { useEffect, useState } from "react";
+import { useStopwatchContext } from "./StopwatchContext";
 
-function MyStopwatch() {
-  const { seconds, minutes, hours, isRunning, start, pause } = useStopwatch({
-    autoStart: false,
-  });
-
-  const [inputValue, setInputValue] = useState("");
-  const [started, setStarted] = useState(false);
-
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
-    if (value.toLowerCase() === "secret") {
-      pause();
-    }
-  };
-
-  const handleStart = () => {
-    start();
-    setStarted(true);
-  };
+const Timer = () => {
+  const { seconds, minutes, hours } = useStopwatchContext();
 
   useEffect(() => {
-    if (!isRunning && started) {
-      sessionStorage.setItem("hours", hours);
-      sessionStorage.setItem("minutes", minutes);
+    const storeTime = () => {
       sessionStorage.setItem("seconds", seconds);
-    }
-  }, [isRunning, started, hours, minutes, seconds]);
+      sessionStorage.setItem("minutes", minutes);
+      sessionStorage.setItem("hours", hours);
+    };
 
-  return (
-    <div style={{ textAlign: "center" }} id="test">
-      <p>Test timer </p>
+    storeTime(); // Store initial time
 
-      <button
-        onClick={handleStart}
-        style={{ display: started ? "none" : "inline-block" }}
-      >
-        Commencer la course
-      </button>
-      <div>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter le mot caché pour terminer la course"
-          style={{ display: !started ? "none" : "inline-block" }}
-        />
-      </div>
-    </div>
-  );
-}
+    // Clean-up function to be executed when the component unmounts
+    return () => {
+      storeTime(); // Store time again when unmounting
+    };
+  }, [seconds, minutes, hours]);
+};
 
-export default MyStopwatch;
+export default Timer;
