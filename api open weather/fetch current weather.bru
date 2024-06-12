@@ -1,0 +1,17 @@
+meta {
+  name: fetch current weather
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=94a93b1e6f27f1fb76a63e3b73fa7f01
+  body: none
+  auth: none
+}
+
+params:query {
+  lat: 33.44
+  lon: -94.04
+  appid: 94a93b1e6f27f1fb76a63e3b73fa7f01
+}
