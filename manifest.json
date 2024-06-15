@@ -1,0 +1,15 @@
+{
+  "name": "Angoul'oriente",
+  "short_name": "Angoul'oriente",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#63befb",
+  "description": "Une application pour découvrir Angoulême et ses environs a travers une course d'orientation",
+  "icons": [
+    {
+      "src": "./src/assets/logo-angouloriente.webp",
+      "sizes": "48x48",
+      "type": "image/webp"
+    }
+  ]
+}
