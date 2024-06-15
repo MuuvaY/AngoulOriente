@@ -9,20 +9,20 @@ function Start() {
   const handleStart = () => {
     start();
     navigate("/Game");
-    sessionStorage.setItem("balise1", "false");
-    sessionStorage.setItem("balise2", "false");
-    sessionStorage.setItem("balise3", "false");
-    sessionStorage.setItem("balise4", "false");
-    sessionStorage.setItem("balise5", "false");
-    sessionStorage.setItem("balise6", "false");
-    sessionStorage.setItem("balise7", "false");
-    sessionStorage.setItem("balise8", "false");
+    // Initialisation de sessionStorage avec un tableau vide si nécessaire
+    if (!sessionStorage.getItem("scannedCodes")) {
+      sessionStorage.setItem("scannedCodes", JSON.stringify([]));
+    }
   };
 
   return (
     <div id="start">
-      <h1 id="start-title">Pour démarrer la course</h1>
-      <button onClick={handleStart}>Commencer</button>
+      <h1>Prêt pour la course ?</h1>
+      <p>
+        Pour commencer la course, cliquez sur le bouton ci-dessous. Vous devrez
+        scanner les 8 codes QR cachés dans la ville pour terminer la course.
+      </p>
+      <button onClick={handleStart}>Commencer la course</button>
     </div>
   );
 }
