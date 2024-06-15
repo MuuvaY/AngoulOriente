@@ -1,8 +1,13 @@
 #found-letters {
   position: absolute;
-  top: 18vh;
-  left: 10.5vw;
+  top: 35vh;
+  left: 8vw;
   border: 1px solid black;
   background-color: white;
   z-index: 1;
+  padding: 0.5rem;
+}
+
+#game-input {
+  width: 30vw;
 }
