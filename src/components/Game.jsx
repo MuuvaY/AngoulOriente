@@ -33,21 +33,54 @@ function Game() {
     const popups = [
       new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(0)),
       new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(1)),
-      // Add more popups as needed
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(2)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(3)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(4)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(5)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(6)),
+      new maptilersdk.Popup({ offset: 25 }).setHTML(popupContent(7)),
     ];
 
     const markers = [
-      new maptilersdk.Marker({ color: "#FFFFFF", draggable: true })
-        .setLngLat([0.15, 45.650002])
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.13878, 45.64794])
         .setPopup(popups[0])
         .addTo(map),
 
-      new maptilersdk.Marker({ color: "#000000", draggable: true })
-        .setLngLat([0.15, 45.660002])
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.13836014204100858, 45.656061430471276])
         .setPopup(popups[1])
         .addTo(map),
 
-      // Add more markers as needed
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.15097989897922934, 45.654567103069716])
+        .setPopup(popups[2])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.14701226404733178, 45.65187998039186])
+        .setPopup(popups[3])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.15712064520431374, 45.64990543277496])
+        .setPopup(popups[4])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.16221130659391206, 45.649302734779106])
+        .setPopup(popups[5])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.17213830875420214, 45.64789783145135])
+        .setPopup(popups[6])
+        .addTo(map),
+
+      new maptilersdk.Marker({ color: "#000000", draggable: false })
+        .setLngLat([0.1751636388762578, 45.64250940634848])
+        .setPopup(popups[7])
+        .addTo(map),
     ];
 
     popups.forEach((popup, index) => {
@@ -105,15 +138,29 @@ function Game() {
   };
 
   return (
-    <>
+    <div id="game">
+      <h1> Bienvenue dans l'aventure de la chasse aux trésors ! </h1>
+      <p>
+        {" "}
+        Pour commencer, scanne les QR codes des balises dans l'odre des balises
+        pour trouver les lettres cachées. Attention, la dernière balise ne donne
+        pas une lettre mais la clé du chiffrement de César.{" "}
+      </p>
+      <p>
+        {" "}
+        Une fois que tu as déchiffré le mot, rentre le dans le champ ci-dessous
+        pour valider ta réponse et terminer la course.{" "}
+      </p>
       <Timer />
       <p id="found-letters">
         Lettres trouvées: <br></br>
-        {scannedCodes}
+        <h3>
+          <b>{scannedCodes}</b>
+        </h3>
       </p>
       <Weather />
 
-      <div id="map" style={{ height: "80vh" }}></div>
+      <div id="map" style={{ height: "80vh", border: "2px solid black" }}></div>
       <input
         id="game-input"
         type="text"
@@ -121,7 +168,7 @@ function Game() {
         onChange={handleInputChange}
         placeholder="Entrez ici les lettres trouvées à chaque qr code"
       />
-    </>
+    </div>
   );
 }
 
