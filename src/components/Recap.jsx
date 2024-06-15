@@ -19,6 +19,13 @@ const Recap = () => {
           Vous avez trouvé le mot secret :{" "}
           <strong id="secret-word">New York</strong>
         </p>
+        <h2>Le saviez-vous ?</h2>
+        <p>
+          Le nom de Terre-d'Angoulême, donné au site où se dresse aujourd'hui
+          New-York, se retrouve sur de nombreuses cartes et portulans du
+          seizième siècle, jusqu'en 1561. Cette première appellation de la
+          grande cité américaine dura donc trente-sept ans.
+        </p>
         <p>
           Temps total :{" "}
           <span id="time">
