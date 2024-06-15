@@ -21,7 +21,6 @@ const Weather = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log(latitude, longitude);
           setCoords({ lat: latitude, lon: longitude });
         },
         (err) => {
@@ -38,7 +37,10 @@ const Weather = () => {
 
   useEffect(() => {
     if (coords.lat !== null && coords.lon !== null) {
-      fetchWeather();
+      fetchWeather(); // Initial fetch
+      const intervalId = setInterval(fetchWeather, 10 * 60 * 1000); // Fetch every 10 minutes
+
+      return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }
   }, [coords]);
 
@@ -51,7 +53,6 @@ const Weather = () => {
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`
       );
       const data = await response.json();
-      console.log(data);
       setWeather(data);
     } catch (error) {
       setError(error);
