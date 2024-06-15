@@ -12,6 +12,7 @@ import QrReader from "./QrReader";
 function Game() {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+  const [scannedCodes, setScannedCodes] = useState([]);
 
   useEffect(() => {
     maptilersdk.config.apiKey = "y1dslXIqqQPSOGJWsaQy";
@@ -59,9 +60,46 @@ function Game() {
     });
   }, []);
 
+  useEffect(() => {
+    // Fonction pour récupérer les codes scannés depuis sessionStorage
+    const retrieveScannedCodes = () => {
+      try {
+        const storedData = sessionStorage.getItem("scannedCodes");
+        const codes = storedData ? JSON.parse(storedData) : [];
+        setScannedCodes(codes);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données sessionStorage :",
+          error
+        );
+        setScannedCodes([]);
+      }
+    };
+
+    // Initialisation ou mise à jour initiale des codes scannés
+    retrieveScannedCodes();
+
+    // Écoute des mises à jour de sessionStorage
+    const handleStorageUpdate = () => {
+      retrieveScannedCodes();
+    };
+
+    window.addEventListener("sessionStorageUpdated", handleStorageUpdate);
+
+    // Nettoyage de l'écouteur lors du démontage du composant
+    return () => {
+      window.removeEventListener("sessionStorageUpdated", handleStorageUpdate);
+    };
+  }, []);
+
+  // Gestion de l'entrée utilisateur
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
-    if (e.target.value.toLowerCase() === "newyork") {
+    const inputText = e.target.value.toLowerCase();
+    if (
+      scannedCodes.length === 7 &&
+      inputText === scannedCodes.join("").toLowerCase()
+    ) {
       navigate("/Recap");
     }
   };
@@ -69,14 +107,19 @@ function Game() {
   return (
     <>
       <Timer />
+      <p id="found-letters">
+        Lettres trouvées: <br></br>
+        {scannedCodes}
+      </p>
       <Weather />
+
       <div id="map" style={{ height: "80vh" }}></div>
       <input
         id="game-input"
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Entrez ici les lettres trouvées à chauqe qr code"
+        placeholder="Entrez ici les lettres trouvées à chaque qr code"
       />
     </>
   );

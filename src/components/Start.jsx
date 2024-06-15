@@ -9,14 +9,10 @@ function Start() {
   const handleStart = () => {
     start();
     navigate("/Game");
-    sessionStorage.setItem("balise1", "false");
-    sessionStorage.setItem("balise2", "false");
-    sessionStorage.setItem("balise3", "false");
-    sessionStorage.setItem("balise4", "false");
-    sessionStorage.setItem("balise5", "false");
-    sessionStorage.setItem("balise6", "false");
-    sessionStorage.setItem("balise7", "false");
-    sessionStorage.setItem("balise8", "false");
+    // Initialisation de sessionStorage avec un tableau vide si nécessaire
+    if (!sessionStorage.getItem("scannedCodes")) {
+      sessionStorage.setItem("scannedCodes", JSON.stringify([]));
+    }
   };
 
   return (
