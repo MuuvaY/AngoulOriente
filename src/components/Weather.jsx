@@ -36,13 +36,19 @@ const Weather = () => {
   }, [hours, minutes, seconds]);
 
   useEffect(() => {
-    if (coords.lat !== null && coords.lon !== null) {
-      fetchWeather(); // Initial fetch
-      const intervalId = setInterval(fetchWeather, 10 * 60 * 1000); // Fetch every 10 minutes
+    const intervalId = setInterval(() => {
+      if (coords.lat !== null && coords.lon !== null) {
+        fetchWeather();
+      }
+    }, 10 * 60 * 1000); // Set up interval to fetch weather every 10 minutes
 
-      return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    // Fetch weather once when component mounts if coordinates are available
+    if (coords.lat !== null && coords.lon !== null) {
+      fetchWeather();
     }
-  }, []);
+
+    return () => clearInterval(intervalId); // Clean up the interval on component unmount
+  }, [coords]); // Only set up the interval when the coordinates are available
 
   const fetchWeather = async () => {
     try {
