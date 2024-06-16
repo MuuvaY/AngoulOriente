@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../assets/logo-angouloriente.webp";
 
 const getSessionData = (key) => {
   return sessionStorage.getItem(key);
@@ -12,6 +13,11 @@ const Recap = () => {
 
   return (
     <div id="recap">
+      <img
+        src={logo}
+        alt="logo de l'application Angoul'Oriente"
+        className="recap-logo"
+      />
       <h1 id="recap-title">Félicitations, {username} !</h1>
       <div id="recap-body">
         <p>Vous avez terminé la course d'orientation.</p>
