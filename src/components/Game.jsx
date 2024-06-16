@@ -26,7 +26,7 @@ function Game() {
     const popupContent = (index) => `
       <div class="popup ${index}">
         <h3>Balise ${index + 1}</h3>
-        <p>Scan le Qr que tu as trouvé sur place:</p>
+
         <div id="scanner-${index}"></div>
       </div>`;
 
