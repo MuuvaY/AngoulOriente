@@ -152,22 +152,31 @@ function Game() {
         pour valider ta réponse et terminer la course.{" "}
       </p>
       <Timer />
-      <p id="found-letters">
-        Lettres trouvées: <br></br>
-        <h3>
-          <b>{scannedCodes}</b>
-        </h3>
-      </p>
-      <Weather />
 
-      <div id="map" style={{ height: "80vh", border: "2px solid black" }}></div>
-      <input
-        id="game-input"
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Entrez ici les lettres trouvées à chaque qr code"
-      />
+      <div
+        id="map"
+        style={{ height: "80vh", border: "2px solid black", zIndex: "1" }}
+      >
+        <p id="found-letters">
+          Lettres trouvées: <br></br>
+          <h3>
+            <b>{scannedCodes}</b>
+          </h3>
+        </p>
+        {/* <Weather /> */}
+      </div>
+      <div id="game-input">
+        <label htmlFor="game-input" id="game-input-label">
+          Mot secret
+        </label>
+        <input
+          id="game-input-input"
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="XXXXXXX"
+        />
+      </div>
     </div>
   );
 }
