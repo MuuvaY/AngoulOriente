@@ -4,12 +4,35 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#63befb",
-  "description": "Une application pour découvrir Angoulême et ses environs a travers une course d'orientation",
+  "description": "Une application pour découvrir Angoulême et ses environs à travers une course d'orientation",
   "icons": [
     {
-      "src": "./src/assets/logo-angouloriente.webp",
+      "src": "src/assets/logo-angouloriente-48x48.webp",
       "sizes": "48x48",
       "type": "image/webp"
+    },
+    {
+      "src": "src/assets/logo-angouloriente-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/logo-angouloriente-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "src/assets/screenshot1-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "src/assets/screenshot2.png",
+      "sizes": "720x1280",
+      "type": "image/png"
     }
   ]
 }
