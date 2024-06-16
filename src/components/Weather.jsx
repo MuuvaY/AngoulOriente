@@ -42,7 +42,7 @@ const Weather = () => {
 
       return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }
-  }, [coords]);
+  }, []);
 
   const fetchWeather = async () => {
     try {
