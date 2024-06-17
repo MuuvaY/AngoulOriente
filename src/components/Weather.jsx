@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSun,
@@ -15,6 +15,7 @@ const Weather = () => {
   const [error, setError] = useState(null);
   const [coords, setCoords] = useState({ lat: null, lon: null });
   const { seconds, minutes, hours } = useStopwatchContext();
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -38,14 +39,21 @@ const Weather = () => {
   useEffect(() => {
     if (coords.lat !== null && coords.lon !== null) {
       console.log(coords.lat, coords.lon);
-      fetchWeather(); // Initial fetch
-      console.log("Fetching weather data#########################");
-      const intervalId = setInterval(fetchWeather, 10 * 60 * 1000); // Fetch every 10 minutes
+      fetchWeather();
 
-      return () => clearInterval(intervalId); // Cleanup interval on component unmount
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+
+      intervalRef.current = setInterval(fetchWeather, 10 * 60 * 1000);
+
+      return () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      };
     }
-  }, []);
-
+  }, [coords]);
 
   const fetchWeather = async () => {
     try {

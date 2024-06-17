@@ -163,7 +163,7 @@ function Game() {
             <b>{scannedCodes}</b>
           </h3>
         </p>
-        {/* <Weather /> */}
+        <Weather />
       </div>
       <div id="game-input">
         <label htmlFor="game-input" id="game-input-label">
