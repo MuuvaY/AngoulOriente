@@ -46,6 +46,7 @@ const Weather = () => {
     }
   }, []);
 
+
   const fetchWeather = async () => {
     try {
       const { lat, lon } = coords;
