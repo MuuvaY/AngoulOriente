@@ -65,7 +65,7 @@ const QrReader = () => {
           src={QrFrame}
           alt="Qr Frame"
           width={150}
-          height={150}
+          height={130}
           className="qr-frame"
         />
       </div>
