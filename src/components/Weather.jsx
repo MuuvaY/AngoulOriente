@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSun,
@@ -13,16 +13,29 @@ import { useStopwatchContext } from "./StopwatchContext";
 const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
-  const [coords, setCoords] = useState({ lat: null, lon: null });
   const { seconds, minutes, hours } = useStopwatchContext();
-  const intervalRef = useRef(null);
 
   useEffect(() => {
+    const fetchWeather = async (lat, lon) => {
+      try {
+        const api_key = "19f56327ba77c093b366eef68a771866";
+        const response = await fetch(
+          `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`
+        );
+        console.log("fecthWeather", response);
+        const data = await response.json();
+        setWeather(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setCoords({ lat: latitude, lon: longitude });
+          console.log(latitude, longitude);
+          fetchWeather(latitude, longitude);
         },
         (err) => {
           setError(err);
@@ -31,45 +44,11 @@ const Weather = () => {
     } else {
       setError(new Error("Geolocation not supported"));
     }
+
     sessionStorage.setItem("hours", hours);
     sessionStorage.setItem("minutes", minutes);
     sessionStorage.setItem("seconds", seconds);
   }, [hours, minutes, seconds]);
-
-  useEffect(() => {
-    if (coords.lat !== null && coords.lon !== null) {
-      console.log(coords.lat, coords.lon);
-      fetchWeather();
-      console.log("fetchWeather");
-
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-
-      intervalRef.current = setInterval(fetchWeather, 10 * 60 * 1000);
-
-      return () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }
-  }, []);
-
-  const fetchWeather = async () => {
-    try {
-      const { lat, lon } = coords;
-
-      const api_key = "94a93b1e6f27f1fb76a63e3b73fa7f01";
-      const response = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`
-      );
-      const data = await response.json();
-      setWeather(data);
-    } catch (error) {
-      setError(error);
-    }
-  };
 
   const getWeatherIcon = (description) => {
     switch (description) {
