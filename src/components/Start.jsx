@@ -20,7 +20,7 @@ function Start() {
       <h1>Prêt pour la course ?</h1>
       <p>
         Pour commencer la course, cliquez sur le bouton ci-dessous. Vous devrez
-        scanner les 8 codes QR cachés dans la ville pour terminer la course.
+        scanner les 8 codes Qr cachés dans la ville pour terminer la course.
       </p>
       <button onClick={handleStart}>Commencer la course</button>
     </div>

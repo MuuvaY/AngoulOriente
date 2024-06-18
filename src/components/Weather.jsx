@@ -40,6 +40,7 @@ const Weather = () => {
     if (coords.lat !== null && coords.lon !== null) {
       console.log(coords.lat, coords.lon);
       fetchWeather();
+      console.log("fetchWeather");
 
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -53,7 +54,7 @@ const Weather = () => {
         }
       };
     }
-  }, [coords]);
+  }, []);
 
   const fetchWeather = async () => {
     try {
