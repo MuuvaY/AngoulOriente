@@ -49,9 +49,11 @@ Forker le projet
 
 1. `git clone https://github.com/MuuvaY/AngoulOriente.git `
 
-Installer les dépendances 2. `npm install `
+Installer les dépendances 
+2. `npm install `
 
-Démarrarez l'application 3. `npm run dev`
+Démarrarez l'application 
+3. `npm run dev`
 
 L'application sera accessible à http://localhost:5173/.
 
