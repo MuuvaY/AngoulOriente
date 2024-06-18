@@ -22,7 +22,7 @@ const Weather = () => {
         const response = await fetch(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`
         );
-        console.log("fecthWeather", response);
+        console.log("fetchWeather", response);
         const data = await response.json();
         setWeather(data);
       } catch (error) {
@@ -44,11 +44,13 @@ const Weather = () => {
     } else {
       setError(new Error("Geolocation not supported"));
     }
+  }, []); // Empty dependency array ensures tdhis runs only once when the component mounts
 
+  useEffect(() => {
     sessionStorage.setItem("hours", hours);
     sessionStorage.setItem("minutes", minutes);
     sessionStorage.setItem("seconds", seconds);
-  }, [hours, minutes, seconds]);
+  }, [hours, minutes, seconds]); // This effect runs every time hours, minutes, or seconds change
 
   const getWeatherIcon = (description) => {
     switch (description) {
