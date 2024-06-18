@@ -19,8 +19,8 @@ function Accueil() {
       <h1 id="accueil-title">Bienvenue sur Angoul'Oriente.</h1>
       <div id="accueil-barre-red"></div>
       <p id="accueil-text">
-        Cette application vous permet de participer une course d'orientation
-        ludique et sportive. A chaques étapes, trouver le Qr Code qui vous
+        Cette application vous permet de participer à une course d'orientation
+        ludique et sportive. À chaques étape, trouver le Qr Code qui vous
         donnera une lettre afin de déchiffrer le mot secret. Une fois le mot
         secret trouvé, le temps s'arrête !
       </p>
