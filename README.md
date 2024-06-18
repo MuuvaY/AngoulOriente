@@ -5,7 +5,7 @@
     <h1 align="center">ANGOULORIENTE</h1>
 </p>
 <p align="center">
-    <em>HTTP error 401 for prompt `slogan`</em>
+    <em>Votre course d'orientation connectée</em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/MuuvaY/AngoulOriente?style=flat&color=0080ff" alt="license">
