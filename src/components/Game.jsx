@@ -129,12 +129,29 @@ function Game() {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     const inputText = e.target.value.toLowerCase();
-    if (
-      scannedCodes.length === 7 &&
-      inputText === scannedCodes.join("").toLowerCase()
-    ) {
+
+    // Check if scannedCodes length is 7 and input matches the conditions
+    if (scannedCodes.length === 8 && isInputValid(inputText)) {
       navigate("/Recap");
     }
+  };
+
+  const isInputValid = (inputText) => {
+    // Check each character except the last one
+    for (let i = 0; i < scannedCodes.length - 1; i++) {
+      const scannedLetter = scannedCodes[i];
+      const shiftedLetter = shiftLetter(scannedLetter, 3);
+      if (inputText[i] !== shiftedLetter) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const shiftLetter = (letter, shiftAmount) => {
+    const code = letter.charCodeAt(0);
+    const shiftedCode = ((code - 97 + shiftAmount) % 26) + 97;
+    return String.fromCharCode(shiftedCode);
   };
 
   return (
