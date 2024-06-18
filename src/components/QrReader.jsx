@@ -1,5 +1,3 @@
-// QrReader.jsx
-
 import React, { useEffect, useRef, useState } from "react";
 import QrScanner from "qr-scanner";
 import QrFrame from "../assets/qr-frame.svg";
@@ -27,24 +25,41 @@ const QrReader = () => {
   };
 
   useEffect(() => {
-    scanner.current = new QrScanner(videoEl.current, onScanSuccess, {
-      onDecodeError: (err) => console.error(err),
-      preferredCamera: "environment",
-      highlightScanRegion: true,
-      highlightCodeOutline: true,
-      overlay: qrBoxEl.current || undefined,
-    });
+    const startScanner = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+        videoEl.current.srcObject = stream;
+        videoEl.current.play();
+        scanner.current = new QrScanner(videoEl.current, onScanSuccess, {
+          onDecodeError: (err) => console.error(err),
+          preferredCamera: "environment",
+          highlightScanRegion: true,
+          highlightCodeOutline: true,
+          overlay: qrBoxEl.current || undefined,
+        });
+        scanner.current.start();
+      } catch (error) {
+        console.error("Camera not found or not accessible:", error);
+      }
+    };
 
-    scanner.current.start();
+    startScanner();
 
     return () => {
-      scanner.current.stop();
+      if (scanner.current) {
+        scanner.current.stop();
+      }
+      if (videoEl.current && videoEl.current.srcObject) {
+        videoEl.current.srcObject.getTracks().forEach((track) => track.stop());
+      }
     };
   }, []);
 
   return (
     <div className="qr-reader">
-      <video ref={videoEl}></video>
+      <video ref={videoEl} playsInline></video>
       <div ref={qrBoxEl} className="qr-box">
         <img
           src={QrFrame}
