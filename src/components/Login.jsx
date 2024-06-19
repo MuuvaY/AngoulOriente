@@ -25,14 +25,19 @@ function Login() {
       />
       <h1 id="login-title">Inscription</h1>
       <div id="login-barre-red"></div>
+      <div id="login-log">
+        <label htmlFor="" id="login-label">
+          Nom
+        </label>
+        <input
+          type="text"
+          value={loginValue}
+          onChange={handleLogin}
+          placeholder="Entrer votre nom..."
+          required
+        />
+      </div>
 
-      <input
-        type="text"
-        value={loginValue}
-        onChange={handleLogin}
-        placeholder="Entrer votre nom..."
-        required
-      />
       <button onClick={redirectToApp}>Valider</button>
     </div>
   );

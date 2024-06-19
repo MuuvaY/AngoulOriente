@@ -26,6 +26,23 @@
     border-radius: 2rem;
   }
 
+  #login-log {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+    background-color: $yellow;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+  }
+  #login-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
   #login-text {
     font-weight: 400;
     font-size: 1.5rem;
