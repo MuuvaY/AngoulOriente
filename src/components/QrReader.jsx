@@ -28,13 +28,12 @@ const QrReader = () => {
     const startScanner = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { facingMode: { exact: "environment" } },
         });
         videoEl.current.srcObject = stream;
         videoEl.current.play();
         scanner.current = new QrScanner(videoEl.current, onScanSuccess, {
           onDecodeError: (err) => console.error(err),
-          preferredCamera: "environment",
           highlightScanRegion: true,
           highlightCodeOutline: true,
           overlay: qrBoxEl.current || undefined,
