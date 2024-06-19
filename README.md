@@ -52,9 +52,6 @@ Les utilisateurs peuvent installer cette application sur leur écran d'accueil p
 4. Cliquez sur "Ajouter" en haut à droite de l'écran.
 Vous verrez maintenant un raccourci créé sur l'écran d'accueil
 
-- Manifest JSON configuré avec icônes et écran de lancement
-- Détection et invitation à l'installation
-
 ## Installation du projet
 
 Forker le projet
