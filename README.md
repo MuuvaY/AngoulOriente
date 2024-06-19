@@ -28,7 +28,7 @@
 </p>
 <hr>
 
-# Site de l'application : [Angoul'Oriente](angouloriente.netlify.app)
+# Site de l'application : [Angoul'Oriente](https://angouloriente.netlify.app/)
 
 ## Introduction
 
