@@ -32,7 +32,7 @@
 
 ## Introduction
 
-Ce projet est une application web progressive (PWA) qui offre une expérience utilisateur semblable à celle des applications natives tout en utilisant des technologies web modernes. Les fonctionnalités clés incluent l'accès hors ligne, le géolocalisation et l'utilisation de la caméra en guise de lecteur de qr code.
+Ce projet est une application web progressive (PWA) qui offre une expérience utilisateur semblable à celle des applications natives tout en utilisant des technologies web modernes. Les fonctionnalités clés incluent l'accès hors ligne, le géolocalisation et l'utilisation de la caméra en guise de lecteur de qr code. Pour tester l'application, vous pouvez scannez les qr code présents dans le dossier public > qrcodes dans cet orde: KBTVLOH3. Une fois scannés, il vous suffit de décaler de 3 trois lettre dnas l'alphabet ces lettres pour trouvé le mot secret et ainsi terminer la course.
 
 ## Description
 
@@ -41,7 +41,7 @@ Cette application vous fait vivre une course d'orientation intéractive. Pour te
 ## Conditions d'utilisation
 
 Pour pouvoir utiliser correctement l'application, il vous faudra un appareil doté d'une caméra et de la géolocalisation. Il faut aussi répondre "autoriser" quand ces fonctionnalités vous sont demandées d'activer.
-A noter que cette application a été testée uniquement sur pc et iPhone.
+A noter que cette application a été testée uniquement sur pc et iPhone. A noter qu'un bug n'a pas pu être résolu. Il s'agit du fait qu'on ne voit plus le lecteur de qr code quand on re-clique sur une balise déja ouverte.
 
 ## Installation sur Écran d'Accueil
 
