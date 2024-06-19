@@ -28,6 +28,8 @@
 </p>
 <hr>
 
+# Site de l'application : [Angoul'Oriente](angouloriente.netlify.app)
+
 ## Introduction
 
 Ce projet est une application web progressive (PWA) qui offre une expérience utilisateur semblable à celle des applications natives tout en utilisant des technologies web modernes. Les fonctionnalités clés incluent l'accès hors ligne, le géolocalisation et l'utilisation de la caméra en guise de lecteur de qr code.
